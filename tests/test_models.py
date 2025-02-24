@@ -41,17 +41,17 @@ def test_category_init(category_object: Category) -> None:
     assert product.quantity == 50
 
 
-def test_number_of_products(list_of_products: list[Product]) -> None:
+def test_product_count(list_of_products: list[Product]) -> None:
     # в одном list_of_products 4 продукта
-    Category.number_of_categories = 0
-    Category.number_of_products = 0
+    Category.category_count = 0
+    Category.product_count = 0
 
     _ = Category(name="Something", description="something", products=list_of_products)
-    assert Category.number_of_categories == 1
-    assert Category.number_of_products == 4
+    assert Category.category_count == 1
+    assert Category.product_count == 4
 
     _ = Category(name="Something", description="something", products=list_of_products)
     _ = Category(name="Something", description="something", products=list_of_products)
     _ = Category(name="Something", description="something", products=list_of_products)
-    assert Category.number_of_categories == 4
-    assert Category.number_of_products == 16
+    assert Category.category_count == 4
+    assert Category.product_count == 16

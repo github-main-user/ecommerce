@@ -7,13 +7,13 @@ class Product:
 
 
 class Category:
-    number_of_categories: int = 0
-    number_of_products: int = 0
+    category_count: int = 0
+    product_count: int = 0
 
     def __init__(self, name: str, description: str, products: list[Product]) -> None:
         self.name = name
         self.description = description
         self.products = products
 
-        Category.number_of_categories += 1
-        Category.number_of_products += len(products)
+        Category.category_count += 1
+        Category.product_count += len(products)
