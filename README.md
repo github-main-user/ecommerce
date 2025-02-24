@@ -38,3 +38,10 @@ python main.py
 ./main.py
 ```
 на Linux.
+
+## Тесты
+Тесты написаны с использованием pytest.
+Для проверки использовать:
+```shell
+pytest --cov src
+```
