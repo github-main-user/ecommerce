@@ -24,21 +24,21 @@ class Category:
 
 def convert_json_to_categories(json_path: str) -> list[Category]:
     """Конвертирует список категорий в JSON формате в список объектов класса Category."""
-    with open(json_path, 'r', encoding="utf-8") as file_obj:
+    with open(json_path, "r", encoding="utf-8") as file_obj:
         categories = json.load(file_obj)
 
     return [
         Category(
-            name=category['name'],
-            description=category['description'],
+            name=category["name"],
+            description=category["description"],
             products=[
                 Product(
-                    name=product['name'],
-                    description=product['description'],
-                    price=product['price'],
-                    quantity=product['quantity'],
+                    name=product["name"],
+                    description=product["description"],
+                    price=product["price"],
+                    quantity=product["quantity"],
                 )
-                for product in category.get('products', [])
+                for product in category.get("products", [])
             ],
         )
         for category in categories

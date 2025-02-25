@@ -33,7 +33,7 @@ if __name__ == "__main__":
     print(category1.category_count)
     print(category1.product_count)
 
-    product4 = Product("55\" QLED 4K", "Фоновая подсветка", 123000.0, 7)
+    product4 = Product('55" QLED 4K', "Фоновая подсветка", 123000.0, 7)
     category2 = Category(
         "Телевизоры",
         "Современный телевизор, который позволяет наслаждаться просмотром, станет вашим другом и помощником",
