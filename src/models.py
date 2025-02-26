@@ -55,6 +55,8 @@ class Category:
 
     def add_product(self, product: Product) -> None:
         """Добавляет объект класса Product к списку продуктов."""
+        if not issubclass(product.__class__, Product):
+            return
         self._products.append(product)
         self.__class__.product_count += 1
 
