@@ -3,8 +3,8 @@ import json
 
 class Product:
     def __init__(self, name: str, description: str, price: float, quantity: int) -> None:
-        self.name = name
-        self.description = description
+        self.name = name.strip()
+        self.description = description.strip()
         self.price = price
         self.quantity = quantity
 
@@ -14,8 +14,8 @@ class Category:
     product_count: int = 0
 
     def __init__(self, name: str, description: str, products: list[Product]) -> None:
-        self.name = name
-        self.description = description
+        self.name = name.strip()
+        self.description = description.strip()
         self._products = products
 
         Category.category_count += 1
