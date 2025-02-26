@@ -11,7 +11,7 @@ class Product:
 
     @classmethod
     def new_product(cls, product: dict[str, Any], product_list: list[Self]) -> Self:
-        """Принимает на вход параметры товара в ввиде словаря, возвращает объект этого класса."""
+        """Принимает на вход параметры товара в ввиде словаря, возвращает экземпляр текущего класса."""
         new_product = cls(**product)
 
         for prod in product_list:
@@ -60,7 +60,7 @@ class Category:
 
     @property
     def products(self) -> list[str]:
-        """Выводит список товаров ввиде строк формата "<Название продукта>, <80 руб>. <Остаток: 15 шт>" ."""
+        """Выводит список товаров ввиде строк формата "Название продукта, X руб. Остаток: X шт."."""
         return [f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт." for product in self._products]
 
 
