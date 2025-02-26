@@ -6,7 +6,7 @@ class Product:
     def __init__(self, name: str, description: str, price: float, quantity: int) -> None:
         self.name = name.strip()
         self.description = description.strip()
-        self._price = price
+        self.__price = price
         self.quantity = quantity
 
     @classmethod
@@ -24,7 +24,7 @@ class Product:
 
     @property
     def price(self) -> float:
-        return self._price
+        return self.__price
 
     @price.setter
     def price(self, new_price: float) -> None:
@@ -32,13 +32,13 @@ class Product:
             print("Цена не должна быть нулевая или отрицательная")
             return
 
-        if new_price < self._price:
-            print(f"Новая цена ({new_price}) ниже предыдущей ({self._price}) на {new_price - self._price}")
+        if new_price < self.__price:
+            print(f"Новая цена ({new_price}) ниже предыдущей ({self.__price}) на {new_price - self.__price}")
             print("Вы уверены что хотите снизить цену? (y/n): ", end="")
             if not (input() == "y"):
                 return
 
-        self._price = new_price
+        self.__price = new_price
 
 
 class Category:
@@ -55,6 +55,8 @@ class Category:
 
     def add_product(self, product: Product) -> None:
         """Добавляет объект класса Product к списку продуктов."""
+        if not isinstance(product, Product):
+            return
         self._products.append(product)
         self.__class__.product_count += 1
 
