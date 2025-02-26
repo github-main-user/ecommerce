@@ -56,6 +56,7 @@ class Category:
     def add_product(self, product: Product) -> None:
         """Добавляет объект класса Product к списку продуктов."""
         self._products.append(product)
+        self.__class__.product_count += 1
 
     @property
     def products(self) -> list[str]:
