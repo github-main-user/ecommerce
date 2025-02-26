@@ -168,6 +168,30 @@ def test_category_add_product(category_object: Category, list_of_products: list[
     assert Category.product_count == 5
 
 
+def test_category_add_product_wront_class(category_object: Category) -> None:
+    class TestClass:
+        pass
+
+    Category.product_count = 0
+    assert Category.product_count == 0
+
+    category_object.add_product(TestClass())  # type: ignore
+    assert Category.product_count == 0
+
+
+def test_category_add_product_correct_class(category_object: Category) -> None:
+    class NewProduct(Product):
+        pass
+
+    new_product = NewProduct(name='test', description='test', price=10, quantity=2)
+
+    Category.product_count = 0
+    assert Category.product_count == 0
+
+    category_object.add_product(new_product)  # type: ignore
+    assert Category.product_count == 1
+
+
 # ============================
 #  convert_json_to_categories
 # ============================
