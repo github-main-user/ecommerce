@@ -10,7 +10,7 @@ class Product:
         self.quantity = quantity
 
     @classmethod
-    def new_product(cls, product: dict[str, Any], product_list: list[Self]) -> Self:
+    def new_product(cls, product: dict[str, Any], product_list: list[Self] = []) -> Self:
         """Принимает на вход параметры товара в ввиде словаря, возвращает экземпляр текущего класса."""
         new_product = cls(**product)
 
