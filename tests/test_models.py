@@ -70,10 +70,8 @@ def test_category_init(category_object: Category) -> None:
     assert category_object.description == "Products for a computer"
 
     product = category_object.products[0]
-    assert product.name == "Keyboard"
-    assert product.description == "A computer keyboard"
-    assert product.price == 2000.25
-    assert product.quantity == 50
+
+    assert product == "Keyboard, 2000.25 руб. Остаток: 50 шт."
 
 
 def test_product_count(list_of_products: list[Product]) -> None:
@@ -102,12 +100,8 @@ def test_convert_json_success(correct_json: list[dict]) -> None:
         assert len(categories[1].products) == 1
 
         assert categories[0].name == "Смартфоны"
-        assert (
-            categories[0].description
-            == "Смартфоны, как средство не только коммуникации"
-        )
-        assert categories[1].products[0].name == '55" QLED 4K'
-        assert categories[1].products[0].quantity == 7
+        assert categories[0].description == "Смартфоны, как средство не только коммуникации"
+        assert categories[1].products[0] == '55" QLED 4K, 123000.0 руб. Остаток: 14 шт.'
 
 
 def test_convert_json_empty_json() -> None:

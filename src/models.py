@@ -29,9 +29,9 @@ class Product:
     @price.setter
     def price(self, new_price: float) -> None:
         if new_price < self._price:
-            print(f'Новая цена ({new_price}) ниже предыдущей ({self._price}) на {new_price - self._price}')
-            print('Вы уверены что хотите снизить цену? (y/n): ', end='')
-            if not (input() == 'y'):
+            print(f"Новая цена ({new_price}) ниже предыдущей ({self._price}) на {new_price - self._price}")
+            print("Вы уверены что хотите снизить цену? (y/n): ", end="")
+            if not (input() == "y"):
                 return
 
         if new_price <= 0:
@@ -60,7 +60,7 @@ class Category:
     @property
     def products(self) -> list[str]:
         """Выводит список товаров ввиде строк формата "<Название продукта>, <80 руб>. <Остаток: 15 шт>" ."""
-        return [f'{product.name}, {product.price} руб. Остаток: {product.quantity} шт.' for product in self._products]
+        return [f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт." for product in self._products]
 
 
 def convert_json_to_categories(json_path: str) -> list[Category]:
@@ -73,12 +73,7 @@ def convert_json_to_categories(json_path: str) -> list[Category]:
             name=category["name"],
             description=category["description"],
             products=[
-                Product(
-                    name=product["name"],
-                    description=product["description"],
-                    price=product["price"],
-                    quantity=product["quantity"],
-                )
+                Product.new_product(product, [Product(**prod) for prod in category.get("products", [])])
                 for product in category.get("products", [])
             ],
         )
