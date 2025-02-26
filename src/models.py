@@ -1,12 +1,44 @@
 import json
+from typing import Any, Self
 
 
 class Product:
     def __init__(self, name: str, description: str, price: float, quantity: int) -> None:
         self.name = name.strip()
         self.description = description.strip()
-        self.price = price
+        self._price = price
         self.quantity = quantity
+
+    @classmethod
+    def new_product(cls, product: dict[str, Any], product_list: list[Self]) -> Self:
+        """Принимает на вход параметры товара в ввиде словаря, возвращает объект этого класса."""
+        new_product = cls(**product)
+
+        for prod in product_list:
+            if prod.name.lower() == new_product.name.lower():
+                new_product.quantity += prod.quantity
+                new_product.price = max(prod.price, new_product.price)
+                break
+
+        return new_product
+
+    @property
+    def price(self) -> float:
+        return self._price
+
+    @price.setter
+    def price(self, new_price: float) -> None:
+        if new_price < self._price:
+            print(f'Новая цена ({new_price}) ниже предыдущей ({self._price}) на {new_price - self._price}')
+            print('Вы уверены что хотите снизить цену? (y/n): ', end='')
+            if not (input() == 'y'):
+                return
+
+        if new_price <= 0:
+            print("Цена не должна быть нулевая или отрицательная")
+            return
+
+        self._price = new_price
 
 
 class Category:
