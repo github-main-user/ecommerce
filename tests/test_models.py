@@ -167,6 +167,14 @@ def test_category_add_product(category_object: Category, list_of_products: list[
         category_object.add_product(product)
     assert Category.product_count == 5
 
+def test_category_add_product_wront_class(category_object: Category) -> None:
+    class TestClass:
+        pass
+    Category.product_count = 0
+    assert Category.product_count == 0
+
+    category_object.add_product(TestClass()) # type: ignore
+    assert Category.product_count == 0
 
 # ============================
 #  convert_json_to_categories
