@@ -28,15 +28,15 @@ class Product:
 
     @price.setter
     def price(self, new_price: float) -> None:
+        if new_price <= 0:
+            print("Цена не должна быть нулевая или отрицательная")
+            return
+
         if new_price < self._price:
             print(f"Новая цена ({new_price}) ниже предыдущей ({self._price}) на {new_price - self._price}")
             print("Вы уверены что хотите снизить цену? (y/n): ", end="")
             if not (input() == "y"):
                 return
-
-        if new_price <= 0:
-            print("Цена не должна быть нулевая или отрицательная")
-            return
 
         self._price = new_price
 
